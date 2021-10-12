@@ -3,5 +3,5 @@
 <a href="/zoos/new">New Zoo</a>
 
 <% @zoos.each do |zoo| %>
-    <h3><%= zoo %></h3>
+    <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a></h3>
 <% end %>
