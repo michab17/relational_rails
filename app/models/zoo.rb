@@ -1,0 +1,3 @@
+class Zoo < ApplicationRecord
+
+end
