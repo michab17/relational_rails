@@ -1,0 +1,10 @@
+<form action="/zoos" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new zoo:</p>
+  <input type='text' name='zoo[name]'/><br/>
+  <input type='checkbox' name='zoo[open?]'/><br/>
+  <input type='number' name='zoo[num_of_people]'/><br/>
+  <input type='datetime-local' name='zoo[opening_day]'/><br/>
+  <input type='datetime-local' name='zoo[animal_added]'/><br/>
+  <input type='submit'/>
+</form>
