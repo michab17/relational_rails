@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/', to: 'welcome#index'
+
   get '/zoos', to: 'zoos#index'
   get '/hotels', to: 'hotels#index'
   get '/zoos/new', to: 'zoos#new'
@@ -9,4 +10,6 @@ Rails.application.routes.draw do
   post '/hotels', to: 'hotels#create'
   get '/zoos/:id', to: 'zoos#show'
   get '/hotels/:id', to: 'hotels#show'
+  get '/animals', to: 'animals#index'
+  get '/guests', to: 'guests#index'
 end
