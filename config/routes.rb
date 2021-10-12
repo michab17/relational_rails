@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get '/hotels/new', to: 'hotels#new'
   post '/zoos', to: 'zoos#create'
   post '/hotels', to: 'hotels#create'
+  get '/zoos/:id', to: 'zoos#show'
+  get '/hotels/:id', to: 'hotels#show'
 end
