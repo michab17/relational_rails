@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_230211) do
+ActiveRecord::Schema.define(version: 2021_10_14_174857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_230211) do
     t.string "name"
     t.boolean "has_covid"
     t.integer "age"
-    t.datetime "day_added"
-    t.datetime "release_date"
     t.bigint "zoo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["zoo_id"], name: "index_animals_on_zoo_id"
   end
 
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_230211) do
     t.string "name"
     t.boolean "royalty_member"
     t.integer "room_number"
-    t.datetime "check_in"
-    t.datetime "expected_check_out"
     t.bigint "hotel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["hotel_id"], name: "index_guests_on_hotel_id"
   end
 
@@ -39,16 +39,16 @@ ActiveRecord::Schema.define(version: 2021_10_13_230211) do
     t.string "name"
     t.boolean "vacancy"
     t.integer "occupancy"
-    t.datetime "opening_day"
-    t.datetime "newest_check_in"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "zoos", force: :cascade do |t|
     t.string "name"
     t.boolean "open"
     t.integer "num_of_people"
-    t.datetime "opening_day"
-    t.datetime "animal_added"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_foreign_key "animals", "zoos"
