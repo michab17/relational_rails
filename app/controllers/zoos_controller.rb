@@ -1,6 +1,6 @@
 class ZoosController < ApplicationController
   def index
-    @zoos = Zoo.all
+    @zoos = Zoo.all.sort_by &:created_at
   end
 
   def new
@@ -15,8 +15,8 @@ class ZoosController < ApplicationController
       name: params[:zoo][:name],
       open: params[:zoo][:open],
       num_of_people: params[:zoo][:num_of_people],
-      opening_day: params[:zoo][:opening_day],
-      animal_added: params[:zoo][:animal_added]
+      opening_day: params[:zoo][:created_at],
+      animal_added: params[:zoo][:updated_at]
     })
 
     zoo.save

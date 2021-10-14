@@ -15,8 +15,8 @@ class HotelsController < ApplicationController
       name: params[:hotel][:name],
       vacancy: params[:hotel][:vacancy],
       occupancy: params[:hotel][:occupancy],
-      opening_day: params[:hotel][:opening_day],
-      newest_check_in: params[:hotel][:newest_check_in]
+      opening_day: params[:hotel][:created_at],
+      newest_check_in: params[:hotel][:updated_at]
     })
 
     hotel.save
