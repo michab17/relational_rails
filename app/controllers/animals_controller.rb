@@ -1,5 +1,9 @@
 class AnimalsController < ApplicationController
   def index
-    @animals = ["animal1", "animal2"]
+    @animals = Animal.all
+  end
+
+  def show
+    @animal = Animal.find(params[:id])
   end
 end
