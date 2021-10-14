@@ -1,5 +1,9 @@
 <h1>Guests:</h1>
 
-<% @guests.each do |guests| %>
-  <h3><%= guests %></h3>
+<% @guests.each do |guest| %>
+  <h3>Name: <%= guest.name %></h3>
+  <p>Royalty Member?: <%= guest.royalty_member %></p>
+  <p>Room Number: <%= guest.room_number %></p>
+  <p>Check-In Time: <%= guest.check_in %></p>
+  <p>Expected Check-Out Time: <%= guest.expected_check_out %></p>
 <% end %>

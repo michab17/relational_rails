@@ -1,5 +1,9 @@
 <h1>Animals:</h1>
 
 <% @animals.each do |animal| %>
-  <h3><%= animal %></h3>
+  <h3>Name: <%= animal.name %></h3>
+  <p>Has Covid?: <%= animal.has_covid %></p>
+  <p>Age: <%= animal.age %></p>
+  <p>Arrival at Zoo: <%= animal.day_added %></p>
+  <p>Release Back Into Wild Date: <%= animal.release_date %></p>
 <% end %>
