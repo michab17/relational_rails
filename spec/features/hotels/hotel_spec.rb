@@ -22,8 +22,8 @@ RSpec.describe 'Hotel tests' do
     end
 
     it 'displays all the hotels in the database' do
-      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200, opening_day: DateTime.new(1776, 11, 10, 23, 22, 0), newest_check_in: DateTime.now)
-      hotel2 = Hotel.create(name: "hotel2", vacancy: false, occupancy: 0, opening_day: DateTime.new(1986, 11, 10, 23, 22, 0), newest_check_in: DateTime.now)
+      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
+      hotel2 = Hotel.create(name: "hotel2", vacancy: false, occupancy: 0, created_at: DateTime.now, updated_at: DateTime.now)
       visit "/hotels"
 
       expect(page).to have_content(hotel.name)
@@ -33,14 +33,14 @@ RSpec.describe 'Hotel tests' do
 
   describe '/hotel/:id' do
     it 'displays all the hotels in the database' do
-      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200, opening_day: DateTime.new(1776, 11, 10, 23, 22, 0), newest_check_in: DateTime.now)
+      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
       visit "/hotels/#{hotel.id}"
 
       expect(page).to have_content(hotel.name)
       expect(page).to have_content(hotel.vacancy)
       expect(page).to have_content(hotel.occupancy)
-      expect(page).to have_content(hotel.opening_day)
-      expect(page).to have_content(hotel.newest_check_in)
+      expect(page).to have_content(hotel.created_at)
+      expect(page).to have_content(hotel.updated_at)
     end
   end
 end
