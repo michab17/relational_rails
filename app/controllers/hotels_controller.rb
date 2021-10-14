@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.all.sort_by &:created_at
   end
 
   def new
@@ -15,8 +15,8 @@ class HotelsController < ApplicationController
       name: params[:hotel][:name],
       vacancy: params[:hotel][:vacancy],
       occupancy: params[:hotel][:occupancy],
-      opening_day: params[:hotel][:created_at],
-      newest_check_in: params[:hotel][:updated_at]
+      created_at: params[:hotel][:created_at],
+      updated_at: params[:hotel][:updated_at]
     })
 
     hotel.save

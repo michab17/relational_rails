@@ -256,6 +256,8 @@
           1,
           1,
           1,
+          1,
+          1,
           null
         ]
       },
@@ -265,7 +267,7 @@
           null
         ]
       },
-      "/Users/michabernhard/turing/2module/relational_rails/app/models/zoo.rb": {
+      "/Users/michabernhard/turing/2module/relational_rails/app/models/hotel.rb": {
         "lines": [
           1,
           1,
@@ -279,19 +281,18 @@
           null
         ]
       },
-      "/Users/michabernhard/turing/2module/relational_rails/app/controllers/zoos_controller.rb": {
+      "/Users/michabernhard/turing/2module/relational_rails/app/controllers/hotels_controller.rb": {
         "lines": [
           1,
           1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
           0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
           null,
           null,
           1,
@@ -315,8 +316,28 @@
           1,
           null
         ]
+      },
+      "/Users/michabernhard/turing/2module/relational_rails/app/models/guest.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/michabernhard/turing/2module/relational_rails/app/controllers/guests_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1634240109
+    "timestamp": 1634246266
   }
 }

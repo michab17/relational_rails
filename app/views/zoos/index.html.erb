@@ -1,7 +1,9 @@
+<p><a href="/animals">Animals</a></p>
+
 <h1>Zoos</h2>
 
 <a href="/zoos/new">New Zoo</a>
 
 <% @zoos.each do |zoo| %>
-    <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a></h3>
+    <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a>: <%= zoo.created_at %></h3>
 <% end %>

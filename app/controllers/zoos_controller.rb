@@ -15,8 +15,8 @@ class ZoosController < ApplicationController
       name: params[:zoo][:name],
       open: params[:zoo][:open],
       num_of_people: params[:zoo][:num_of_people],
-      opening_day: params[:zoo][:created_at],
-      animal_added: params[:zoo][:updated_at]
+      created_at: params[:zoo][:created_at],
+      updated_at: params[:zoo][:updated_at]
     })
 
     zoo.save
