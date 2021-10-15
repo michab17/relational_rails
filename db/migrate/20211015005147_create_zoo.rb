@@ -4,8 +4,8 @@ class CreateZoo < ActiveRecord::Migration[5.2]
       t.string :name
       t.boolean :open
       t.integer :num_of_people
-      t.datetime :opening_day
-      t.datetime :animal_added
+
+      t.timestamps
     end
   end
 end

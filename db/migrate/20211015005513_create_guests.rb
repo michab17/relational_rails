@@ -4,8 +4,8 @@ class CreateGuests < ActiveRecord::Migration[5.2]
       t.string :name
       t.boolean :royalty_member
       t.integer :room_number
-      t.datetime :check_in
-      t.datetime :expected_check_out
+      t.timestamps
+      t.references :hotel, foreign_key: true
     end
   end
 end

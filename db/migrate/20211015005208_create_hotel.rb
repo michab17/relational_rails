@@ -4,8 +4,8 @@ class CreateHotel < ActiveRecord::Migration[5.2]
       t.string :name
       t.boolean :vacancy
       t.integer :occupancy
-      t.datetime :opening_day
-      t.datetime :newest_check_in
+
+      t.timestamps
     end
   end
 end

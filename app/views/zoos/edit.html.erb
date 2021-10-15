@@ -1,0 +1,9 @@
+<form action="/zoos/<%= @zoo.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit:</p>
+  <input type='text' name='zoo[name]' value="<%= @zoo.name %>"/><br/>
+  <input type='checkbox' checked="true" name='zoo[open]' value="<%= @zoo.open %>"/><br/>
+  <input type='number' name='zoo[num_of_people]' value="<%= @zoo.num_of_people %>"/><br/>
+  <input type='submit'/>
+</form>

@@ -1,6 +1,7 @@
 class ZoosController < ApplicationController
   def index
-    @zoos = Zoo.all.sort_by &:created_at
+    @zoos = Zoo.all.sort.reverse.to_a
+
   end
 
   def new
@@ -15,12 +16,29 @@ class ZoosController < ApplicationController
       name: params[:zoo][:name],
       open: params[:zoo][:open],
       num_of_people: params[:zoo][:num_of_people],
-      created_at: params[:zoo][:created_at],
-      updated_at: params[:zoo][:updated_at]
+      created_at: DateTime.now,
+      updated_at: DateTime.now
     })
 
     zoo.save
 
     redirect_to '/zoos'
+  end
+
+  def edit
+    @zoo = Zoo.find(params[:id])
+  end
+
+  def update
+    zoo = Zoo.find(params[:id])
+    zoo.update({
+      name: params[:zoo][:name],
+      open: params[:zoo][:open],
+      num_of_people: params[:zoo][:num_of_people],
+      updated_at: DateTime.now
+    })
+    zoo.save 
+
+    redirect_to "/zoos/#{zoo.id}"
   end
 end
