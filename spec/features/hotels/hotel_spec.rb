@@ -19,6 +19,10 @@ RSpec.describe 'Hotel tests' do
       click_link "New Hotel"
 
       expect(current_path).to eq("/hotels/new")
+
+      click_link "Create Hotel"
+
+      expect(current_path).to eq("/hotels")
     end
 
     it 'displays all the hotels in the database' do
@@ -144,4 +148,15 @@ RSpec.describe 'Hotel tests' do
       expect(current_path).to eq("/hotels/#{hotel.id}/guests")
     end
   end
+
+  describe 'Parent Update' do 
+    it 'has a link to update parent' do 
+      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
+
+      visit "/hotels/#{hotel.id}"
+
+      click_link "Update Hotel"
+
+      expect(current_path).to eq("/hotels/#{hotel.id}/edit")
+    end 
 end
