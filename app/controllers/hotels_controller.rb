@@ -1,6 +1,7 @@
 class HotelsController < ApplicationController
   def index
-    @hotels = Hotel.all.sort_by &:created_at
+    @hotels = Hotel.all.sort.reverse.to_a # &:created_at
+    #@hotels = Hotel.all.sort_by &:created_at
   end
 
   def new
@@ -15,12 +16,29 @@ class HotelsController < ApplicationController
       name: params[:hotel][:name],
       vacancy: params[:hotel][:vacancy],
       occupancy: params[:hotel][:occupancy],
-      created_at: params[:hotel][:created_at],
-      updated_at: params[:hotel][:updated_at]
+      created_at: DateTime.now,
+      updated_at: DateTime.now
     })
 
     hotel.save
 
     redirect_to '/hotels'
+  end
+
+  def edit
+    @hotel = Hotel.find(params[:id])
+  end
+
+  def update
+    hotel = Hotel.find(params[:id])
+    hotel.update({
+      name: params[:hotel][:name],
+      vacancy: params[:hotel][:vacancy],
+      occupancy: params[:hotel][:occupancy],
+      updated_at: DateTime.now
+    })
+    hotel.save 
+
+    redirect_to "/hotels/#{hotel.id}"
   end
 end
