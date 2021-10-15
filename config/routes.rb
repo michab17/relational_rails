@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   get '/animals/:id', to: 'animals#show'
   get '/zoos/:id/animals', to: 'animals#index'
   get '/hotels/:id/guests', to: 'guests#index'
+  get '/hotels/:id/edit', to: 'hotels#edit'
+  get '/zoos/:id/edit', to: 'zoos#edit'
+  patch '/zoos/:id', to: 'zoos#update'
+  patch '/hotels/:id', to: 'hotels#update'
 end
