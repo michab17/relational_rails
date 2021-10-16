@@ -30,4 +30,13 @@ Rails.application.routes.draw do
   patch '/guests/:id', to: 'guests#update'
   get '/zoos/:id/animals', to: 'zoos#sorted_index'
   get '/hotels/:id/guests', to: 'hotels#sorted_index'
+  delete '/hotels/:id', to: 'hotels#destroy'
+  delete '/zoos/:id', to: 'zoos#destroy'
+  delete '/guests/:id', to: 'guests#destroy'
+  delete '/animals/:id', to: 'animals#destroy'
+  get '/zoos/:id/animals', to: 'zoos#user_input'
+  get '/hotels/:id/guests', to: 'hotels#user_input'
+  get '/zoos/:id/animals', to: 'zoos#threshold_index'
+  get '/hotels/:id/guests', to: 'hotels#threshold_index'
+
 end
