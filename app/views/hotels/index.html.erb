@@ -5,6 +5,6 @@
 <a href="/hotels/new">New Hotel</a>
 
 <% @hotels.each do |hotel| %>
-  <h3><a href="/hotels/<%= hotel.id %>"><%= hotel.name %></a>: <%= hotel.created_at %></h3>
+  <h3><a href="/hotels/<%= hotel.id %>"><%= hotel.name %></a>: <%= hotel.created_at %> <a href="/hotels/<%= hotel.id %>/edit">Update <%= hotel.name %></a> <%= link_to "Delete", "/hotels/#{hotel.id}", method: :delete%></h3>
 <% end %>
 

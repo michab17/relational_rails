@@ -5,5 +5,5 @@
 <a href="/zoos/new">New Zoo</a>
 
 <% @zoos.each do |zoo| %>
-    <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a>: <%= zoo.created_at %></h3>
+  <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a>: <%= zoo.created_at %> <a href="/zoos/<%= zoo.id %>/edit">Update <%= zoo.name %></a> <%= link_to "Delete", "/zoos/#{zoo.id}", method: :delete%></h3>
 <% end %>

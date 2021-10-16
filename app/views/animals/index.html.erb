@@ -8,4 +8,6 @@
   <p>Age: <%= animal.age %></p>
   <p>Created At: <%= animal.created_at %></p>
   <p>Updated At: <%= animal.updated_at %></p>
+  <p><a href="/animals/<%= animal.id %>/edit">Update <%= animal.name %></a><%= link_to "Delete", "/animals/#{animal.id}", method: :delete%></p>
+
 <% end %>

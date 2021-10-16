@@ -7,3 +7,4 @@
 <p>Updated At: <%= @animal.updated_at %></p>
 
 <a href="/animals/<%= @animal.id %>/edit">Update Animal</a>
+<p><%= link_to "Delete Animal", "/animals/#{@animal.id}", method: :delete%></p>
