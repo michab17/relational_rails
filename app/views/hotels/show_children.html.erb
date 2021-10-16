@@ -1,0 +1,7 @@
+<h1>Guests of <%= @hotel.name %>:</h1>
+
+<% @guests.each do |guest|%>
+  <h2><%= guest.name %></h2>
+<% end %>
+<a href="/hotels/<%= @hotel.id %>/guests/new">Create Guest</a>
+<a href="/hotels/<%= @hotel.id %>/guests">Alphabetize</a>
