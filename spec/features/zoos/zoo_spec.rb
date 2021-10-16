@@ -156,4 +156,65 @@ RSpec.describe 'Zoo tests' do
       expect(page).to have_content("Prometheus")
     end
   end
+
+  describe 'Update From Parent Index' do 
+    it 'takes user to parent update page' do 
+      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 200)
+
+      visit "/zoos"
+
+      expect(page).to have_link("Update Zootopia")
+
+      click_link "Update Zootopia"
+
+      expect(current_path).to eq("/zoos/#{zootopia.id}/edit")
+    end 
+  end 
+
+  describe 'Delete Parent and its Children' do 
+    it 'Deletes a Parent and all Child Records' do 
+      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
+      fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
+      prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: false, age: 109)
+
+      visit "/zoos/#{zootopia.id}"
+      expect(page).to have_link("Delete Zoo")
+      click_link "Delete Zoo"
+      expect(current_path).to eq("/zoos")
+      expect(page).to_not have_content("Zootopia")
+
+      visit "/animals"
+      expect(page).to_not have_content("Fred")
+      expect(page).to_not have_content("Prometheus")
+    end 
+  end 
+
+  describe 'Records Over a Given Threshold' do 
+    xit 'Displays Records Over the Given Number' do 
+      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
+      fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
+      prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: false, age: 109)
+ 
+      visit "/zoos/#{zootopia.id}/animals"
+      expect(page).to have_button('Only return records with animals older than the given number')
+
+      fill_in 'age', with: '50'
+      click_button 'Only return records with animals older than the given number'
+
+      expect(page).to have_content("Prometheus")
+      expect(page).to_not have_content("Fred")
+    end 
+  end 
+
+  describe 'Delete from Parent Index' do 
+    it 'has a delete link' do 
+      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
+      fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
+      prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: false, age: 109)
+
+      visit "/zoos"
+
+      expect(page).to have_link("Delete")
+    end 
+  end 
 end
