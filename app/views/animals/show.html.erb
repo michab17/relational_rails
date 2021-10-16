@@ -1,7 +1,9 @@
-<p><a href="/zoos">Zoos</a></p> <p><a href="/zoos/<%= @zoo.id %>/animals">Animals</a></p>
+<p><a href="/zoos">Zoos</a></p> <p><a href="/animals">Animals</a></p>
 
 <h1><%= @animal.name %></h1>
 <p>Has Covid?: <%= @animal.has_covid %></p>
 <p>Age: <%= @animal.age %></p>
-<p>Arrival at Zoo: <%= @animal.created_at %></p>
-<p>Release Back Into Wild Date: <%= @animal.updated_at %></p>
+<p>Created At: <%= @animal.created_at %></p>
+<p>Updated At: <%= @animal.updated_at %></p>
+
+<a href="/animals/<%= @animal.id %>/edit">Update Animal</a>
