@@ -48,6 +48,21 @@ class ZoosController < ApplicationController
 
   def sorted_index
     @zoo = Zoo.find(params[:id])
-    @animals = Zoo.sort_by_name
+    @animals = @zoo.sort_by_name
+  end
+  
+  def destroy
+    @zoo = Zoo.find(params[:id])
+
+    @zoo.animals.destroy_all
+    @zoo.destroy
+
+    redirect_to "/zoos"
+  end
+
+  def threshold_index
+    @zoo = Zoo.find(params[:id])  
+    @num = params[:num]
+    @animals = @zoo.threshold(@num)
   end
 end

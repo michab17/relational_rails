@@ -48,6 +48,22 @@ class HotelsController < ApplicationController
 
   def sorted_index
     @hotel = Hotel.find(params[:id])
-    @guests = Hotel.sort_by_name
+    @guests = @hotel.sort_by_name
+  end
+
+  def destroy
+    @hotel = Hotel.find(params[:id])
+
+    @hotel.guests.destroy_all
+    @hotel.destroy
+
+    redirect_to "/hotels"
+  end
+
+  def threshold_index
+    @hotel = Hotel.find(params[:id])  
+    @num = params[:num]
+
+    @guests = @hotel.threshold(@num)
   end
 end
