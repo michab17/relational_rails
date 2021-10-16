@@ -258,6 +258,20 @@
           1,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null
         ]
       },
@@ -271,6 +285,14 @@
         "lines": [
           1,
           1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -278,6 +300,17 @@
         "lines": [
           1,
           1,
+          null
+        ]
+      },
+      "/Users/michabernhard/turing/2module/relational_rails/app/models/guest.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -292,7 +325,7 @@
           null,
           null,
           1,
-          1,
+          0,
           null,
           null,
           1,
@@ -306,6 +339,33 @@
           null,
           0,
           null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          0,
           0,
           null,
           null
@@ -316,28 +376,8 @@
           1,
           null
         ]
-      },
-      "/Users/michabernhard/turing/2module/relational_rails/app/models/guest.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/michabernhard/turing/2module/relational_rails/app/controllers/guests_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null
-        ]
       }
     },
-    "timestamp": 1634246266
+    "timestamp": 1634356046
   }
 }
