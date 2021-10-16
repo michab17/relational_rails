@@ -1,7 +1,6 @@
 class HotelsController < ApplicationController
   def index
-    @hotels = Hotel.all.sort.reverse.to_a # &:created_at
-    #@hotels = Hotel.all.sort_by &:created_at
+    @hotels = Hotel.reverse_order
   end
 
   def new
@@ -40,5 +39,15 @@ class HotelsController < ApplicationController
     hotel.save 
 
     redirect_to "/hotels/#{hotel.id}"
+  end
+
+  def show_children
+    @hotel = Hotel.find(params[:id])
+    @guests = @hotel.guests
+  end
+
+  def sorted_index
+    @hotel = Hotel.find(params[:id])
+    @guests = Hotel.sort_by_name
   end
 end

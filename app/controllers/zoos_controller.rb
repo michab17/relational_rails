@@ -1,7 +1,6 @@
 class ZoosController < ApplicationController
   def index
-    @zoos = Zoo.all.sort.reverse.to_a
-
+    @zoos = Zoo.reverse_order
   end
 
   def new
@@ -40,5 +39,15 @@ class ZoosController < ApplicationController
     zoo.save 
 
     redirect_to "/zoos/#{zoo.id}"
+  end
+
+  def show_children
+    @zoo = Zoo.find(params[:id])
+    @animals = @zoo.animals
+  end
+
+  def sorted_index
+    @zoo = Zoo.find(params[:id])
+    @animals = Zoo.sort_by_name
   end
 end
