@@ -1,0 +1,9 @@
+ <%= form_with url: "/hotels/#{@hotel.id}/guests", method: :post, local: true do |f| %>
+  <%= f.label "Name:" %> 
+  <%= f.text_field :name, required: true, class: "form-control"%><br>
+  <%= f.label "Royalty Member?" %> 
+  <%= f.check_box :royalty_member %><br>
+  <%= f.label "Room Number:" %> 
+  <%= f.number_field :room_number, required: true  %><br>
+  <%= f.submit "Create Guest" %>
+  <% end %>

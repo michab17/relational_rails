@@ -18,4 +18,4 @@ fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
 prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: false, age: 109)
 
 aardvark_ranch = Zoo.create!(name: "Aardvark Ranch", open: false, num_of_people: 0)
-elizabeth = zootopia.animals.create!(name: "Elizabeth", has_covid: true, age: 2)
+elizabeth = aardvark_ranch.animals.create!(name: "Elizabeth", has_covid: true, age: 2)

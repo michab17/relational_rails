@@ -1,0 +1,9 @@
+<form action="/animals/<%= @animal.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit:</p>
+  <input type='text' name='animal[name]' value="<%= @animal.name %>"/><br/>
+  <input type='checkbox' checked='true' name='animal[has_covid]' value="<%= @animal.has_covid %>"/><br/>
+  <input type='number' name='animal[age]' value="<%= @animal.age %>"/><br/>
+  <input type='submit' value='Update Animal'/>
+</form>

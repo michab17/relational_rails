@@ -1,0 +1,10 @@
+<h1>Animals in <%= @zoo.name %>:</h1>
+
+<% @animals.each do |animal|%>
+  <h2><%= animal.attributes %></h2>
+<% end %>
+<a href="/zoos/<%= @zoo.id %>/animals/new">Create Animal</a>
+<a href="/zoos/<%= @zoo.id %>/animals">Alphabetize</a>
+
+
+

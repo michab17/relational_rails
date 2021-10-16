@@ -114,10 +114,9 @@ RSpec.describe 'Zoo tests' do
 
       click_link "Animals"
 
-      expect(current_path).to eq("/animals")
-      expect(current_path).to_not eq("/zoos/#{zoo.id}")
+      expect(current_path).to eq("/zoos/#{zoo.id}/animals")
 
-      visit 'zoos/new'
+      visit '/zoos/new'
 
       expect(page).to have_link("Animals")
 
@@ -142,6 +141,19 @@ RSpec.describe 'Zoo tests' do
       click_link "Animals"
 
       expect(current_path).to eq("/zoos/#{zoo.id}/animals")
+    end
+  end
+
+  describe 'Show Parents Children' do
+    it 'displays the given parents children' do
+      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
+      fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
+      prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: false, age: 109)
+      
+      visit "zoos/#{zootopia.id}/animals"
+
+      expect(page).to have_content("Fred")
+      expect(page).to have_content("Prometheus")
     end
   end
 end
