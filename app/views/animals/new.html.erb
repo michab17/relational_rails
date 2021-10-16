@@ -1,0 +1,9 @@
+ <%= form_with url: "/zoos/#{@zoo.id}/animals", method: :post, local: true do |f| %>
+  <%= f.label "Name:" %> 
+  <%= f.text_field :name, required: true, class: "form-control"%><br>
+  <%= f.label "Has Covid?" %> 
+  <%= f.check_box :has_covid %><br>
+  <%= f.label "Age:" %> 
+  <%= f.number_field :age, required: true  %><br>
+  <%= f.submit "Create Animal" %>
+  <% end %>

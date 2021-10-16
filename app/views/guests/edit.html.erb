@@ -1,0 +1,9 @@
+<form action="/guests/<%= @guest.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit:</p>
+  <input type='text' name='guest[name]' value="<%= @guest.name %>"/><br/>
+  <input type='checkbox' checked='true' name='guest[royalty_member]' value="<%= @guest.royalty_member %>"/><br/>
+  <input type='number' name='guest[room_number]' value="<%= @guest.room_number %>"/><br/>
+  <input type='submit' value='Update Guest'/>
+</form>
