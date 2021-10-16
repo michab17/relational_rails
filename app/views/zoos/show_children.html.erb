@@ -1,7 +1,8 @@
 <h1>Animals in <%= @zoo.name %>:</h1>
 
 <% @animals.each do |animal|%>
-  <h2><%= animal.attributes %></h2>
+  <h2><%= animal.name %></h2>
+  <p><a href="/animals/<%= animal.id %>/edit">Update <%= animal.name %></a></p>
 <% end %>
 <a href="/zoos/<%= @zoo.id %>/animals/new">Create Animal</a>
 <a href="/zoos/<%= @zoo.id %>/animals">Alphabetize</a>
