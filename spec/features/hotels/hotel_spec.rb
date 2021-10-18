@@ -166,10 +166,71 @@ RSpec.describe 'Hotel tests' do
       maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
       jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
 
-      visit "hotels/#{hotel_micha.id}/guests"
+      visit "/hotels/#{hotel_micha.id}/guests"
 
       expect(page).to have_content("Maximus")
       expect(page).to have_content("Jenifer")
     end
   end
+
+  describe 'Update From Parent Index' do 
+    it 'takes user to parent update page' do 
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+
+      visit "/hotels"
+
+      expect(page).to have_link("Update Hotel Micha")
+
+      click_link "Update Hotel Micha"
+
+      expect(current_path).to eq("/hotels/#{hotel_micha.id}/edit")
+    end 
+  end 
+
+  describe 'Delete Parent and its Children' do 
+    it 'Deletes a Parent and all Child Records' do 
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+      maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
+      jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
+
+      visit "/hotels/#{hotel_micha.id}"
+      expect(page).to have_link("Delete Hotel")
+      click_link "Delete Hotel"
+      expect(current_path).to eq("/hotels")
+      expect(page).to_not have_content("Hotel Micha")
+
+      visit "/guests"
+      expect(page).to_not have_content("Maximus")
+      expect(page).to_not have_content("Jenifer")
+    end 
+  end 
+
+  describe 'Records Over a Given Threshold' do 
+    xit 'Displays Records Over the Given Number' do 
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+      maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
+      jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
+ 
+      visit "/hotels/#{hotel_micha.id}/guests"
+      expect(page).to have_button('Only return records with room number greater than the given number')
+
+      fill_in 'room_number', with: '200'
+      click_button 'Only return records with room number greater than the given number'
+
+      expect(page).to have_content("Jenifer")
+      expect(page).to_not have_content("Maximus")
+    end 
+  end 
+
+  describe 'Delete from Parent Index' do 
+    it 'has a delete link' do 
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+      maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
+      jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
+
+      visit "/hotels"
+
+      expect(page).to have_link("Delete")
+    end 
+  end 
 end

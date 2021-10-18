@@ -6,6 +6,6 @@ class Hotel < ApplicationRecord
   end
 
   def self.sort_by_name
-    Hotel.animals.order("name")
+    Hotel.guests.order("name")
   end
 end

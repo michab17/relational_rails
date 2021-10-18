@@ -8,4 +8,5 @@
   <p>Room Number: <%= guest.room_number %></p>
   <p>Created At: <%= guest.created_at %></p>
   <p>Updated At: <%= guest.updated_at %></p>
+  <p><a href="/guests/<%= guest.id %>/edit">Update <%= guest.name %></a><%= link_to "Delete", "/guests/#{guest.id}", method: :delete%></p>
 <% end %>

@@ -2,6 +2,11 @@
 
 <% @guests.each do |guest|%>
   <h2><%= guest.name %></h2>
+  <p><a href="/guests/<%= guest.id %>/edit">Update <%= guest.name %></a></p>
 <% end %>
 <a href="/hotels/<%= @hotel.id %>/guests/new">Create Guest</a>
 <a href="/hotels/<%= @hotel.id %>/guests">Alphabetize</a>
+<form action="/hotels/<%= @hotel.id %>/guests">
+  <input type="number" name="num"><br><br>
+  <input type="submit" value="Only return records with room number greater than the given number">
+</form>

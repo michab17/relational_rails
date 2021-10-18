@@ -6,6 +6,6 @@ class Zoo < ApplicationRecord
   end
 
   def self.sort_by_name
-    Zoo.animals.order("name")
+    Zoo.animals.order("name").reverse 
   end
 end

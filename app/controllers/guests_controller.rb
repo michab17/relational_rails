@@ -42,4 +42,10 @@ class GuestsController < ApplicationController
 
     redirect_to "/guests/#{guest.id}"
   end
+
+  def destroy
+    @guest = Guest.destroy(params[:id])
+
+    redirect_to "/guests"
+  end
 end

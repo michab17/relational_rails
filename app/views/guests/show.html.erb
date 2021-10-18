@@ -7,3 +7,4 @@
 <p>Expected Check-Out Time: <%= @guest.updated_at %></p>
 
 <a href="/guests/<%= @guest.id %>/edit">Update Guest</a>
+<p><%= link_to "Delete Guest", "/guests/#{@guest.id}", method: :delete%></p>
