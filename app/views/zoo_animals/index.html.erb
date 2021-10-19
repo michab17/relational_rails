@@ -1,0 +1,19 @@
+<h1>Animals in <%= @zoo.name %>:</h1>
+<%= link_to "Alphabetize", "/zoos/#{@zoo.id}/animals?sort=true", method: :get %>
+
+<% @animals.each do |animal|%>
+  <p>
+    <div id=<%= "animal-#{animal.id}" %> >
+    <h2><%= animal.name %></h2>
+    <a href="/animals/<%= animal.id %>/edit">Update <%= animal.name %></a>
+    </div>
+  </p>
+<% end %>
+<a href="/zoos/<%= @zoo.id %>/animals/new">Create Animal</a>
+<%= form_with url: "/zoos/#{@zoo.id}/animals", method: :get, local: true do |form| %>
+  <%= form.number_field :num %>
+  <%= form.submit 'Only return records with animals older than the given number' %>
+<% end %>
+
+
+

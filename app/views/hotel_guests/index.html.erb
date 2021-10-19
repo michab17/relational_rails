@@ -1,0 +1,16 @@
+<h1>Guests of <%= @hotel.name %>:</h1>
+<%= link_to "Alphabetize", "/hotels/#{@hotel.id}/guests?sort=true", method: :get %>
+
+<% @guests.each do |guest|%>
+  <p>
+    <div id=<%= "guest-#{guest.id}" %> >
+    <h2><%= guest.name %></h2>
+    <a href="/guests/<%= guest.id %>/edit">Update <%= guest.name %></a>
+    </div>
+  </p>
+<% end %>
+<a href="/hotels/<%= @hotel.id %>/guests/new">Create Guest</a>
+<%= form_with url: "/hotels/#{@hotel.id}/guests", method: :get, local: true do |form| %>
+  <%= form.number_field :num %>
+  <%= form.submit 'Only return records with room number greater than the given number' %>
+<% end %>
