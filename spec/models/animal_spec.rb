@@ -15,15 +15,4 @@ RSpec.describe Animal, type: :model do
       expect(page).to_not have_content("Fred")
     end
   end
-  
-  describe '#self.threshold' do 
-    xit 'returns guests over given number threshold' do 
-      zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
-      fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
-      prometheus = zootopia.animals.create!(name: "Prometheus", has_covid: true, age: 109)
-
-      expect(zootopia.animals.threshold(21)).to eq(prometheus)
-    end 
-  end 
-
 end 
