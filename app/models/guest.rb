@@ -4,8 +4,4 @@ class Guest < ApplicationRecord
   def self.only_true
     Guest.where("royalty_member = true")
   end
-
-  def self.threshold(num)
-    Guest.where("room_number > num") 
-  end
 end 

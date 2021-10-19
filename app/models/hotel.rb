@@ -5,7 +5,11 @@ class Hotel < ApplicationRecord
     Hotel.order("created_at").reverse
   end
 
-  def self.sort_by_name
-    Hotel.guests.order("name")
+  def guests_sort_by_name
+    guests.order("name")
+  end
+
+  def guests_threshold(num)
+    guests.where("room_number > #{num}") 
   end
 end

@@ -5,7 +5,11 @@ class Zoo < ApplicationRecord
     Zoo.order("created_at").reverse
   end
 
-  def self.sort_by_name
-    Zoo.animals.order("name").reverse 
+  def animals_sort_by_name
+    animals.order("name") 
+  end
+
+  def animals_threshold(num)
+    animals.where("age > #{num}") 
   end
 end
