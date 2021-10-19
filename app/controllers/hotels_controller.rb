@@ -41,16 +41,6 @@ class HotelsController < ApplicationController
     redirect_to "/hotels/#{hotel.id}"
   end
 
-  def show_children
-    @hotel = Hotel.find(params[:id])
-    @guests = @hotel.guests
-  end
-
-  def sorted_index
-    @hotel = Hotel.find(params[:id])
-    @guests = @hotel.sort_by_name
-  end
-
   def destroy
     @hotel = Hotel.find(params[:id])
 
@@ -58,12 +48,5 @@ class HotelsController < ApplicationController
     @hotel.destroy
 
     redirect_to "/hotels"
-  end
-
-  def threshold_index
-    @hotel = Hotel.find(params[:id])  
-    @num = params[:num]
-
-    @guests = @hotel.threshold(@num)
   end
 end

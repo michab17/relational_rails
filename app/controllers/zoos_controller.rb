@@ -40,16 +40,6 @@ class ZoosController < ApplicationController
 
     redirect_to "/zoos/#{zoo.id}"
   end
-
-  def show_children
-    @zoo = Zoo.find(params[:id])
-    @animals = @zoo.animals
-  end
-
-  def sorted_index
-    @zoo = Zoo.find(params[:id])
-    @animals = @zoo.sort_by_name
-  end
   
   def destroy
     @zoo = Zoo.find(params[:id])
@@ -58,11 +48,5 @@ class ZoosController < ApplicationController
     @zoo.destroy
 
     redirect_to "/zoos"
-  end
-
-  def threshold_index
-    @zoo = Zoo.find(params[:id])  
-    @num = params[:num]
-    @animals = @zoo.threshold(@num)
   end
 end
