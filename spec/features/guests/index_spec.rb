@@ -13,6 +13,16 @@ RSpec.describe 'Guest Index' do
       expect(page).to have_content(guest.created_at)
       expect(page).to have_content(guest.updated_at)
     end 
+
+    it 'only displays guests with a true boolean' do
+      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 25, created_at: DateTime.now, updated_at: DateTime.now)
+      guest1 = hotel.guests.create!(name: "Maximus", royalty_member: false, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      guest2 = hotel.guests.create!(name: "Jack", royalty_member: true, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      
+      visit "/guests"
+
+      expect(page).to have_content('Jack')
+    end
   end 
 
   describe 'When I visit any page on the site' do

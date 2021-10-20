@@ -1,8 +1,5 @@
 require 'rails_helper'
-# As a visitor
-# When I visit the parent index,
-# I see that records are ordered by most recently created first
-# And next to each of the records I see when it was created
+
 RSpec.describe 'Hotel Index' do
   describe 'When I visit the Hotel Index Page' do
     it 'Displays the name of each Hotel' do

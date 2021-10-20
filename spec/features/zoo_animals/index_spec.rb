@@ -34,7 +34,7 @@ RSpec.describe 'Zoo Animals Index' do
     end
   end
 
-  describe 'Records Over a Given Threshold' do 
+  describe 'When I visit the zoo animals index page' do 
     it 'Displays Records Over the Given Number' do 
       zootopia = Zoo.create!(name: "Zootopia", open: true, num_of_people: 100)
       fred = zootopia.animals.create!(name: "Fred", has_covid: false, age: 20)
@@ -46,4 +46,20 @@ RSpec.describe 'Zoo Animals Index' do
       expect(zootopia.animals_threshold(50)).to eq([prometheus])
     end 
   end 
+
+  # describe 'Zoo index conditional' do
+  #   it 'can set different values to the animals array' do
+  #     zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+  #     animal1 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+  #     animal2 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+  #     animal3 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+  #     visit "/zoos/#{zoo.id}/animals"
+
+  #     if click_link "Alphabetize"
+  #       expect(@animals).to eq(zoo.animals_sort_by_name)
+  #     else
+  #       expect(@animals).to eq(zoo.animals)
+  #     end
+  #   end
+  # end
 end

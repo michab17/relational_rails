@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'New Animal' do
-  describe 'Create Animal' do
-    it 'creates a new child for given parent' do
+  describe 'When I visit the Zoo Animals Index page' do
+    it 'creates a new animal for given zoo' do
       zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
 
       visit "/zoos/#{zoo.id}/animals"
 
-      expect(page).to have_link("Create Animal")
-
       click_link "Create Animal"
 
       expect(current_path).to eq("/zoos/#{zoo.id}/animals/new")
-      expect(page).to have_button("Create Animal")
 
       fill_in 'name', with: 'Fred'
       check 'has_covid'

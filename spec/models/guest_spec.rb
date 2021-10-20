@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Guest, type: :model do 
   it {should belong_to :hotel}
 
-  describe '#self.only_true' do
+  describe '::only_true' do
     it 'only displays guests with a true boolean' do
       hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
       maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)

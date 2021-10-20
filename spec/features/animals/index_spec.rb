@@ -13,6 +13,16 @@ RSpec.describe 'Animals Index' do
       expect(page).to have_content(animal.created_at)
       expect(page).to have_content(animal.updated_at)
     end
+
+    it 'only displays animals with a true boolean' do
+      zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo.animals.create!(name: "Fred", has_covid: false, age: 10)
+      animal2 = zoo.animals.create!(name: "Jack", has_covid: true, age: 10)
+
+      visit '/animals'
+
+      expect(page).to have_content("Jack")
+    end
   end 
   
   describe 'When I visit any page on the site' do 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Zoo do 
+RSpec.describe Zoo, type: :model do 
   it {should have_many :animals}
 
   describe '#sort_by_name' do

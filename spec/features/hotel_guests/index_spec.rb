@@ -34,7 +34,7 @@ RSpec.describe 'Hotel Guests Index' do
     end
   end
 
-  describe 'Records Over a Given Threshold' do 
+  describe 'When I visit the hotel guests index page' do 
     it 'Displays Records Over the Given Number' do 
       hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
       maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
