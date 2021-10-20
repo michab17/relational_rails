@@ -4,6 +4,15 @@
 
 <a href="/zoos/new">New Zoo</a>
 
-<% @zoos.each do |zoo| %>
+<% if url='zoos?sort=true'%>
+  <% @zoos.each do |zoo| %>
+    <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a>: <%= zoo.created_at %> <a href="/zoos/<%= zoo.id %>/edit">Update <%= zoo.name %></a> <%= link_to "Delete", "/zoos/#{zoo.id}", method: :delete%></h3>
+    <h3>Number of animals: <%= zoo.animals.length %></h3>
+  <% end %>
+<% else %>
+  <% @zoos.each do |zoo| %>
   <h3><a href="/zoos/<%= zoo.id %>"><%= zoo.name %></a>: <%= zoo.created_at %> <a href="/zoos/<%= zoo.id %>/edit">Update <%= zoo.name %></a> <%= link_to "Delete", "/zoos/#{zoo.id}", method: :delete%></h3>
+  <% end %>
 <% end %>
+
+<%= link_to "Sort by animals", "/zoos?sort=true", method: :get %>
