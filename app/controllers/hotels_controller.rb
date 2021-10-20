@@ -1,6 +1,10 @@
 class HotelsController < ApplicationController
   def index
-    @hotels = Hotel.reverse_order
+    if params[:sort]
+      @hotels = Hotel.num_of_guests
+    else
+      @hotels = Hotel.reverse_order
+    end
   end
 
   def new

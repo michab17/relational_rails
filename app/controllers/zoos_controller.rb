@@ -1,6 +1,10 @@
 class ZoosController < ApplicationController
   def index
-    @zoos = Zoo.reverse_order
+    if params[:sort]
+      @zoos = Zoo.num_of_animals
+    else
+      @zoos = Zoo.reverse_order
+    end
   end
 
   def new
