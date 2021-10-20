@@ -12,4 +12,10 @@ class Hotel < ApplicationRecord
   def guests_threshold(num)
     guests.where("room_number > #{num}") 
   end
+
+  def self.num_of_guests
+    all.sort_by do |hotel|
+      hotel.guests.length
+    end.reverse
+  end
 end
