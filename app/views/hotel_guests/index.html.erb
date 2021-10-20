@@ -5,6 +5,8 @@
   <p>
     <div id=<%= "guest-#{guest.id}" %> >
     <h2><%= guest.name %></h2>
+    <h2><%= guest.royalty_member %></h2>
+    <h2><%= guest.room_number %></h2>
     <a href="/guests/<%= guest.id %>/edit">Update <%= guest.name %></a>
     </div>
   </p>

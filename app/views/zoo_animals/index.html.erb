@@ -5,6 +5,8 @@
   <p>
     <div id=<%= "animal-#{animal.id}" %> >
     <h2><%= animal.name %></h2>
+    <h2><%= animal.has_covid %></h2>
+    <h2><%= animal.age %></h2>
     <a href="/animals/<%= animal.id %>/edit">Update <%= animal.name %></a>
     </div>
   </p>
