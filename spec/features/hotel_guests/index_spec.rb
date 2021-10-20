@@ -1,43 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'Hotel Guests Index' do
-  describe 'Child Index Link' do
-    it 'takes the user back to the child index' do
-      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
+  describe 'When I visit the Hotels Guestindex page' do
+    it 'Displays all of the given Hotels Guest and their given attributes' do
+      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200)
+      guest1 = hotel.guests.create!(name: "Maximus", royalty_member: false, room_number: 10)
+      guest2 = hotel.guests.create!(name: "Maximus", royalty_member: false, room_number: 10)
+      guest3 = hotel.guests.create!(name: "Maximus", royalty_member: false, room_number: 10)
 
-      visit "/hotels/#{hotel.id}"
-
-      expect(page).to have_link("Guests")
-
-      click_link "Guests"
-
-      expect(current_path).to eq("/hotels/#{hotel.id}/guests")
-
-      visit '/hotels/new'
-
-      expect(page).to have_link("Guests")
-
-      click_link "Guests"
-
-      expect(current_path).to eq("/guests")
-
-      visit '/hotels'
-
-      click_link "Guests"
-
-      expect(current_path).to eq("/guests")
-    end
-  end
-
-  describe 'Child Table Link' do
-    it 'takes you to /hotels/:id/guests' do
-      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
-
-      visit "/hotels/#{hotel.id}"
-
-      click_link "Guests"
-
-      expect(current_path).to eq("/hotels/#{hotel.id}/guests")
+      visit "/hotels/#{hotel.id}/guests"
+      expect(page).to have_content(guest1.name)
+      expect(page).to have_content(guest1.royalty_member)
+      expect(page).to have_content(guest1.room_number)
+      expect(page).to have_content(guest2.name)
+      expect(page).to have_content(guest2.royalty_member)
+      expect(page).to have_content(guest2.room_number)
+      expect(page).to have_content(guest3.name)
+      expect(page).to have_content(guest3.royalty_member)
+      expect(page).to have_content(guest3.room_number)
     end
   end
 

@@ -1,15 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'Zoo Animals Index' do
-  describe 'Child Table Link' do
-    it 'takes you to /zoos/:id/animals' do
+  describe 'When I visit the Zoos Animal index page' do
+    it 'Displays all of the given Zoos animals and their given attributes' do
       zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+      animal2 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+      animal3 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
 
-      visit "/zoos/#{zoo.id}"
-
-      click_link "Animals"
-
-      expect(current_path).to eq("/zoos/#{zoo.id}/animals")
+      visit "/zoos/#{zoo.id}/animals"
+      expect(page).to have_content(animal1.name)
+      expect(page).to have_content(animal1.has_covid)
+      expect(page).to have_content(animal1.age)
+      expect(page).to have_content(animal2.name)
+      expect(page).to have_content(animal2.has_covid)
+      expect(page).to have_content(animal2.age)
+      expect(page).to have_content(animal3.name)
+      expect(page).to have_content(animal3.has_covid)
+      expect(page).to have_content(animal3.age)
     end
   end
 

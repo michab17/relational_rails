@@ -1,12 +1,26 @@
 require "rails_helper"
 
 RSpec.describe 'Animals Index' do
-  describe 'Child Index Link' do
-    it 'takes the user to the child index' do
+  describe 'When I visit the Animal Index Page' do
+    it 'Displays the name of each Animal' do 
       zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
-
+      animal = zoo.animals.create!(name: "Fred", has_covid: true, age: 10)
+      visit "/animals"
+    
+      expect(page).to have_content(animal.name)
+      expect(page).to have_content(animal.has_covid)
+      expect(page).to have_content(animal.age)
+      expect(page).to have_content(animal.created_at)
+      expect(page).to have_content(animal.updated_at)
+    end
+  end 
+  
+  describe 'When I visit any page on the site' do 
+    it 'Takes the user back to the Animal index' do
+      zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      
       visit "/zoos/#{zoo.id}"
-
+      
       expect(page).to have_link("Animals")
 
       click_link "Animals"
@@ -26,19 +40,6 @@ RSpec.describe 'Animals Index' do
       click_link "Animals"
 
       expect(current_path).to eq("/animals")
-    end
-
-    it 'shows the attributes of all the animals' do 
-      zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
-      animal = zoo.animals.create!(name: "Fred", has_covid: true, age: 10)
-    
-      visit "/animals"
-  
-      expect(page).to have_content(animal.name)
-      expect(page).to have_content(animal.has_covid)
-      expect(page).to have_content(animal.age)
-      expect(page).to have_content(animal.created_at)
-      expect(page).to have_content(animal.updated_at)
     end
   end
 end

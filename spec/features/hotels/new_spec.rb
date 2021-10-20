@@ -1,20 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe 'Hotel tests' do
-  it 'displays a New Hotel button' do
-    visit "/hotels"
+  describe 'When I visit the Hotel Index page' do 
+    it 'Displays a New Hotel button' do
+      visit "/hotels"
 
-    expect(page).to have_content("New Hotel")
-  end
+      click_link "New Hotel"
 
-  it 'takes you to hotels/new if button is clicked' do
-    visit "/hotels"
+      expect(current_path).to eq("/hotels/new")
 
-    click_link "New Hotel"
+      fill_in 'hotel[name]', with: 'Fred'
+      check 'hotel[vacancy]'
+      fill_in 'hotel[occupancy]', with: '10'
 
-    expect(current_path).to eq("/hotels/new")
-    click_button "Create Hotel"
+      click_button "Create Hotel"
 
-    expect(current_path).to eq("/hotels")
-  end
+      expect(current_path).to eq("/hotels")
+      expect(page).to have_content("Fred")
+    end
+  end 
 end

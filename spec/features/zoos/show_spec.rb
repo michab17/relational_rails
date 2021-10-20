@@ -1,8 +1,7 @@
 require 'rails_helper'
-
-RSpec.describe 'Zoo tests' do
-  describe '/zoos/:id' do
-    it 'displays all the zoos in the database' do
+RSpec.describe 'Zoo Show Page' do
+  describe 'When I visit the Zoo Show Page' do
+    it 'Displays the Zoo and its attributes' do
       zoo = Zoo.create(name: "Zoo1", open: true, num_of_people: 200)
       visit "/zoos/#{zoo.id}"
 
@@ -13,7 +12,7 @@ RSpec.describe 'Zoo tests' do
       expect(page).to have_content(zoo.updated_at)
     end
 
-    it 'displays the number of children' do
+    it 'Displays the number of Animals' do
       zoo = Zoo.create!(name: "zoo1", open: true, num_of_people: 200)
       animal1 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
       animal2 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
@@ -21,7 +20,21 @@ RSpec.describe 'Zoo tests' do
 
       visit "/zoos/#{zoo.id}"
 
-      expect(page).to have_content('3')
+      expect(page).to have_content(zoo.animals.length)
+    end
+
+    it 'I see a link to take me to the associated Animals page' do
+      zoo = Zoo.create!(name: "zoo1", open: true, num_of_people: 200)
+      animal1 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+      animal2 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+      animal3 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
+
+      visit "/zoos/#{zoo.id}"
+
+      expect(page).to have_link("Animals")
+      click_link "Animals"
+
+      expect(current_path).to eq("/zoos/#{zoo.id}/animals") 
     end
   end
 end

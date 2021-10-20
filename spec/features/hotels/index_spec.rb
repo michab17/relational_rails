@@ -1,46 +1,51 @@
 require 'rails_helper'
-
-RSpec.describe 'Hotel tests' do
-  describe '/hotel' do
-    it 'displays Hotels' do
+# As a visitor
+# When I visit the parent index,
+# I see that records are ordered by most recently created first
+# And next to each of the records I see when it was created
+RSpec.describe 'Hotel Index' do
+  describe 'When I visit the Hotel Index Page' do
+    it 'Displays the name of each Hotel' do
+      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200)
+      hotel2 = Hotel.create(name: "hotel2", vacancy: false, occupancy: 0)
       visit "/hotels"
 
       expect(page).to have_content("Hotels")
-    end
-
-    it 'displays all the hotels in the database' do
-      hotel = Hotel.create(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
-      hotel2 = Hotel.create(name: "hotel2", vacancy: false, occupancy: 0, created_at: DateTime.now, updated_at: DateTime.now)
-      visit "/hotels"
-
       expect(page).to have_content(hotel.name)
       expect(page).to have_content(hotel2.name)
-    end
-  end
+      expect(page).to_not have_content("Hotel 3")
 
-  describe '/hotels' do
-    it 'the instances of hotel should be ordered by created at' do
-      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
-      hotel4 = Hotel.create!(name: "hotel4", vacancy: true, occupancy: 1000, created_at: DateTime.now, updated_at: DateTime.now)
-      hotel3 = Hotel.create!(name: "hotel3", vacancy: true, occupancy: 100, created_at: DateTime.now, updated_at: DateTime.now)
-      hotel2 = Hotel.create!(name: "hotel2", vacancy: false, occupancy: 0, created_at: DateTime.now, updated_at: DateTime.now)
-  
+    end
+    
+    it 'Is ordered by most recently created' do
+      hotel1 = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200)
+      hotel4 = Hotel.create!(name: "hotel4", vacancy: true, occupancy: 1000)
+      hotel3 = Hotel.create!(name: "hotel3", vacancy: true, occupancy: 100)
+      hotel2 = Hotel.create!(name: "hotel2", vacancy: false, occupancy: 0)
+      
       visit "/hotels"
-  
-      expect(page).to have_content(hotel.name)
-      expect(page).to have_content(hotel.created_at)
-      expect(page).to have_content(hotel4.name)
+      
+      expect(Hotel.reverse_order).to eq([hotel1, hotel4, hotel3, hotel2])
+    end
+
+    it 'Shows next to each Hotel when it was created' do
+      hotel1 = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200)
+      hotel4 = Hotel.create!(name: "hotel4", vacancy: true, occupancy: 1000)
+      hotel3 = Hotel.create!(name: "hotel3", vacancy: true, occupancy: 100)
+      hotel2 = Hotel.create!(name: "hotel2", vacancy: false, occupancy: 0)
+      
+      visit "/hotels"
+      
+      expect(page).to have_content(hotel1.created_at)
       expect(page).to have_content(hotel4.created_at)
-      expect(page).to have_content(hotel3.name)
       expect(page).to have_content(hotel3.created_at)
-      expect(page).to have_content(hotel2.name)
       expect(page).to have_content(hotel2.created_at)
     end
   end
 
-  describe 'Parent Index Link' do
-    it 'takes the user back to the parent index' do
-      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200, created_at: DateTime.now, updated_at: DateTime.now)
+  describe 'When I visit any page on the site' do
+    it 'Takes the user back to the Hotel index' do
+      hotel = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 200)
 
       visit "/hotels/#{hotel.id}"
 
