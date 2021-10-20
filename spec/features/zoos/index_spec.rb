@@ -38,6 +38,20 @@ RSpec.describe 'Zoo Index' do
       expect(page).to have_content(zoo2.created_at)
     end
 
+    it 'has a link to sort instances by number of animals' do
+      zoo1 = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo1.animals.create!(name: "Fred", has_covid: false, age: 10)
+      
+      zoo2 = Zoo.create!(name: "Zoo2", open: true, num_of_people: 1000)
+      animal3 = zoo2.animals.create!(name: "Jack", has_covid: true, age: 10)
+      animal2 = zoo2.animals.create!(name: "Ricardo", has_covid: true, age: 10)
+
+      visit '/zoos?sort=true'
+
+      expect(zoo2.name).to appear_before(zoo1.name) 
+      expect(page).to have_content('Number of animals: 2')
+      expect(page).to have_content('Number of animals: 1')
+    end
   end
 
   describe 'When I visit any page on the site' do

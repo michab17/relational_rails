@@ -27,4 +27,18 @@ RSpec.describe Zoo, type: :model do
       expect(zootopia.animals_threshold(21)).to eq([prometheus])
     end 
   end 
+
+  describe '::num_of_animals' do
+   it 'sorts by number of animals' do
+      zoo1 = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo1.animals.create!(name: "Fred", has_covid: false, age: 10)
+      
+      zoo2 = Zoo.create!(name: "Zoo2", open: true, num_of_people: 1000)
+      animal3 = zoo2.animals.create!(name: "Jack", has_covid: true, age: 10)
+      animal2 = zoo2.animals.create!(name: "Ricardo", has_covid: true, age: 10)
+
+      expect(Zoo.num_of_animals).to eq([zoo2, zoo1])
+
+    end
+  end
 end 

@@ -26,5 +26,18 @@ RSpec.describe Hotel, type: :model do
 
       expect(hotel_micha.guests_threshold(200)).to eq([jenifer])
     end 
-  end 
+  end
+
+  describe '::num_of_guests' do
+    it 'sorts by number of guests' do
+      hotel1 = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 25, created_at: DateTime.now, updated_at: DateTime.now)
+      guest1 = hotel1.guests.create!(name: "Maximus", royalty_member: false, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      
+      hotel2 = Hotel.create!(name: "hotel2", vacancy: true, occupancy: 25, created_at: DateTime.now, updated_at: DateTime.now)
+      guest1 = hotel2.guests.create!(name: "Maximus", royalty_member: false, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      guest2 = hotel2.guests.create!(name: "Jack", royalty_member: true, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+
+      expect(Hotel.num_of_guests).to eq([hotel2, hotel1])
+    end
+  end
 end 

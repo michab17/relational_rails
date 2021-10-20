@@ -38,6 +38,21 @@ RSpec.describe 'Hotel Index' do
       expect(page).to have_content(hotel3.created_at)
       expect(page).to have_content(hotel2.created_at)
     end
+
+    it 'has a link to sort instances by number of guests' do
+      hotel1 = Hotel.create!(name: "hotel1", vacancy: true, occupancy: 25, created_at: DateTime.now, updated_at: DateTime.now)
+      guest1 = hotel1.guests.create!(name: "Maximus", royalty_member: false, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      
+      hotel2 = Hotel.create!(name: "hotel2", vacancy: true, occupancy: 25, created_at: DateTime.now, updated_at: DateTime.now)
+      guest1 = hotel2.guests.create!(name: "Maximus", royalty_member: false, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+      guest2 = hotel2.guests.create!(name: "Jack", royalty_member: true, room_number: 10, created_at: DateTime.now, updated_at: DateTime.now)
+
+      visit '/hotels?sort=true'
+
+      expect(hotel2.name).to appear_before(hotel1.name) 
+      expect(page).to have_content('Number of guests: 2')
+      expect(page).to have_content('Number of guests: 1')
+    end
   end
 
   describe 'When I visit any page on the site' do
