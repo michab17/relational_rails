@@ -2,7 +2,7 @@ class Zoo < ApplicationRecord
   has_many :animals
 
   def self.reverse_order
-    Zoo.order("created_at").reverse
+    Zoo.order("created_at")
   end
 
   def animals_sort_by_name

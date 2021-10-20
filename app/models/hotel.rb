@@ -2,7 +2,7 @@ class Hotel < ApplicationRecord
   has_many :guests
 
   def self.reverse_order
-    Hotel.order("created_at").reverse
+    order("created_at")
   end
 
   def guests_sort_by_name
