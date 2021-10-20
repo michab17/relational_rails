@@ -47,19 +47,30 @@ RSpec.describe 'Zoo Animals Index' do
     end 
   end 
 
-  # describe 'Zoo index conditional' do
-  #   it 'can set different values to the animals array' do
-  #     zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
-  #     animal1 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
-  #     animal2 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
-  #     animal3 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 10)
-  #     visit "/zoos/#{zoo.id}/animals"
+  describe 'Zoo Animals index sorted' do
+    it 'can set different values to the animals array' do
+      zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo.animals.create!(name: "Alex", has_covid: false, age: 10)
+      animal2 = zoo.animals.create!(name: "Charlie", has_covid: false, age: 10)
+      animal3 = zoo.animals.create!(name: "Ben", has_covid: false, age: 10)
+      visit "/zoos/#{zoo.id}/animals?sort=true"
 
-  #     if click_link "Alphabetize"
-  #       expect(@animals).to eq(zoo.animals_sort_by_name)
-  #     else
-  #       expect(@animals).to eq(zoo.animals)
-  #     end
-  #   end
-  # end
+      expect(animal1.name).to appear_before(animal3.name)
+      expect(animal3.name).to appear_before(animal2.name)
+    end
+  end
+
+  describe 'Zoo Animals index threshold' do
+    it 'can set different values to the animals array' do
+      zoo = Zoo.create!(name: "Zoo1", open: true, num_of_people: 200)
+      animal1 = zoo.animals.create!(name: "test2", has_covid: false, age: 10)
+      animal2 = zoo.animals.create!(name: "test1", has_covid: false, age: 100)
+      animal3 = zoo.animals.create!(name: "Maximus", has_covid: false, age: 200)
+      visit "/zoos/#{zoo.id}/animals?num=101&commit=Only+return+records+with+animals+older+than+the+given+number"
+
+      expect(page).to have_content(animal3.name)
+      expect(page).to_not have_content(animal1.name)
+      expect(page).to_not have_content(animal2.name)
+    end
+  end
 end

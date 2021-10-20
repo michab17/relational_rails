@@ -46,4 +46,31 @@ RSpec.describe 'Hotel Guests Index' do
       expect(hotel_micha.guests_threshold(200)).to eq([jenifer])
     end 
   end 
+
+  describe 'Hotel Guests index sorted' do
+    it 'can set different values to the animals array' do
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+      maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
+      jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
+      fred = hotel_micha.guests.create!(name: "Fred", royalty_member: true, room_number: 444)
+      visit "/hotels/#{hotel_micha.id}/guests?sort=true"
+
+      expect(fred.name).to appear_before(jenifer.name)
+      expect(jenifer.name).to appear_before(maximus.name)
+    end
+  end
+
+  describe 'Hotel Guests index threshold' do
+    it 'can set different values to the animals array' do
+      hotel_micha = Hotel.create!(name: "Hotel Micha", vacancy: true, occupancy: 200)
+      maximus = hotel_micha.guests.create!(name: "Maximus", royalty_member: true, room_number: 123)
+      jenifer = hotel_micha.guests.create!(name: "Jenifer", royalty_member: true, room_number: 444)
+      fred = hotel_micha.guests.create!(name: "Fred", royalty_member: true, room_number: 1000)
+      visit "/hotels/#{hotel_micha.id}/guests?num=500&commit=Only+return+records+with+room+number+greater+than+the+given+number'"
+
+      expect(page).to have_content(fred.name)
+      expect(page).to_not have_content(jenifer.name)
+      expect(page).to_not have_content(maximus.name)
+    end
+  end
 end
